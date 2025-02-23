@@ -7,21 +7,21 @@ interface CardPostagensProps {
 
 function CardPostagem({ postagem }: CardPostagensProps) {
     return (
-        <div className='border-slate-900 border 
+        <div className='border-yellow-600 border bg-gray-50 
             flex flex-col rounded overflow-hidden justify-between'>
                 
             <div>
-                <div className="flex w-full bg-indigo-400 py-2 px-4 items-center gap-4">
+                <div className="flex w-full bg-yellow-600 py-1 px-4 items-center gap-4 text-gray-100">
                     <img
                         src={postagem.usuario?.foto}
-                        className='h-12 rounded-full'
+                        className='h-10 rounded-full'
                         alt={postagem.usuario?.nome} />
-                    <h3 className='text-lg font-bold text-center uppercase'>
+                    <h3 className='text-x1 text-center'>
                         {postagem.usuario?.nome}
                     </h3>
                 </div>
-                <div className='p-4 '>
-                    <h4 className='text-lg font-semibold uppercase'>{postagem.titulo}</h4>
+                <div className='p-3 '>
+                    <h4 className='text-lg font-medium text-gray-600'>{postagem.titulo}</h4>
                     <p>{postagem.texto}</p>
                     <p>Tema: {postagem.tema?.descricao}</p>
                     <p>Data: {new Intl.DateTimeFormat(undefined, {
@@ -31,16 +31,16 @@ function CardPostagem({ postagem }: CardPostagensProps) {
                 </div>
             </div>
 
-            <div className="flex">
+            <div className="flex m-4 cursor-pointer">
                 <Link to={`/editarpostagem/${postagem.id}`}
-                    className='w-full text-slate-100 bg-indigo-400 hover:bg-indigo-800 
-                    flex items-center justify-center py-2'>
+                    className='w-full text-gray-600 bg-gray-50 border-1 border-yellow-600
+                    flex items-center justify-center text-sm px-0 py-0'>
                     <button>Editar</button>
                 </Link>
 
                 <Link to={`/deletarpostagem/${postagem.id}`} 
-                    className='text-white bg-red-400 
-                    hover:bg-red-700 w-full flex items-center justify-center'>
+                    className='text-white bg-red-700 
+                    w-full flex items-center justify-center text-sm px-0 py-0'>
                     <button>Deletar</button>
                 </Link>
             </div>

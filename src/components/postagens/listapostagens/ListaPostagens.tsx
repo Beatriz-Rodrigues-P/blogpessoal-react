@@ -4,7 +4,7 @@ import { useState, useContext, useEffect } from "react";
 import { AuthContext } from "../../../contexts/AuthContext";
 import Postagem from "../../../models/Postagem";
 import { buscar } from "../../../services/Service";
-import { DNA } from "react-loader-spinner";
+import { ColorRing } from "react-loader-spinner";
 
 function ListaPostagens() {
 
@@ -44,16 +44,22 @@ function ListaPostagens() {
     return (
         <>
             {postagens.length === 0 && (
-                <DNA
-                    visible={true}
-                    height="200"
-                    width="200"
-                    ariaLabel="dna-loading"
-                    wrapperStyle={{}}
-                    wrapperClass="dna-wrapper mx-auto"
-                />
+                <ColorRing
+                visible={true}
+                height="80"
+                width="80"
+                ariaLabel="color-ring-loading"
+                wrapperStyle={{
+                    display:"flex",
+                    justifyContent:"center",
+                    alignItems:"center",
+                    height:"100vh"
+                }}
+                wrapperClass="color-ring-wrapper mx-auto"
+                colors={['#e15b64', '#f47e60', '#f8b26a', '#abbd81', '#849b87']}
+            />
             )}
-            <div className="flex justify-center w-full my-4">
+            <div className="flex justify-center w-full my-4 bg-gray-50 pb-7 pt-3">
                 <div className="container flex flex-col mx-2">
                     <div className='container mx-auto my-4 
                         grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'

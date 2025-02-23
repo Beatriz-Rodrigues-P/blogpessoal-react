@@ -7,33 +7,33 @@ function Footer() {
     return (
         <>
             <div className="
+                w-full 
                 flex 
-                justify-center 
-                bg-indigo-900 
-                text-white">
+                justify-between
+                bg-yellow-600
+                text-gray-50">
 
                 <div className="
-                    container
+                    w-full
                     flex 
-                    flex-col 
+                    justify-between
                     items-center 
-                    py-4">
+                    py-2
+                    px-4">
 
-                    <p className='text-xl font-bold'>
-                        Blog pessoal da Beatriz Rodrigues | Copyright: {data}
+                    <p className='text-xl'>
+                        Blog Rede 4.0 | Copyright: {data}
                     </p>
 
-                    <p className='text-lg'>Acesse nossas redes sociais</p>
-                    
                     <div className='flex gap-2'>
                         <a href="https://www.linkedin.com/in/beatriz-rodrigues-paula/" target="_blank">
-                            <LinkedinLogo size={48} weight='bold' />
+                            <LinkedinLogo size={35}/>
                         </a>
                         <a href="https://www.instagram.com/" target="_blank">
-                            <InstagramLogo size={48} weight='bold' />
+                            <InstagramLogo size={35}/>
                         </a>
                         <a href="https://www.facebook.com/" target="_blank">
-                            <FacebookLogo size={48} weight='bold' />
+                            <FacebookLogo size={35}/>
                         </a>
                     </div>
                 </div>
