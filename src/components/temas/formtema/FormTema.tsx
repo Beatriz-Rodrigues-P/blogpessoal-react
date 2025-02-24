@@ -4,6 +4,7 @@ import Tema from "../../../models/Tema";
 import { AuthContext } from "../../../contexts/AuthContext";
 import { atualizar, buscar, cadastrar } from "../../../services/Service";
 import { RotatingLines } from "react-loader-spinner";
+import { ToastAlert } from "../../../utils/ToastAlert";
 
 function FormTema() {
 
@@ -31,7 +32,7 @@ function FormTema() {
 
     useEffect(() => {
         if (token === '') {
-            alert('Você precisa estar logado!')
+            ToastAlert('Você precisa estar logado!', "info")
             navigate('/')
         }
     }, [token])
@@ -62,12 +63,12 @@ function FormTema() {
                 await atualizar(`/temas`, tema, setTema, {
                     headers: { 'Authorization': token }
                 })
-                alert('O Tema foi atualizado com sucesso!')
+                ToastAlert('Tema atualizado com sucesso!', "sucesso")
             } catch (error: any) {
                 if (error.toString().includes('403')) {
                     handleLogout();
                 } else {
-                    alert('Erro ao atualizar o tema.')
+                    ToastAlert('Erro ao atualizar o tema.', "erro")
                 }
 
             }
@@ -76,12 +77,12 @@ function FormTema() {
                 await cadastrar(`/temas`, tema, setTema, {
                     headers: { 'Authorization': token }
                 })
-                alert('O Tema foi cadastrado com sucesso!')
+                ToastAlert('Tema cadastrado com sucesso!', "sucesso")
             } catch (error: any) {
                 if (error.toString().includes('403')) {
                     handleLogout();
                 } else {
-                    alert('Erro ao cadastrar o tema.')
+                    ToastAlert('Erro ao cadastrar tema.', "erro")
                 }
 
             }
@@ -93,26 +94,27 @@ function FormTema() {
 
 
     return (
-        <div className="container flex flex-col items-center justify-center mx-auto">
-            <h1 className="text-4xl text-center my-8">
-                {id === undefined ? 'Cadastrar Tema':'Editar Tema'}
+        <div className="container pt-25 flex flex-col mx-auto items-center">
+            <h1 className="text-3xl text-center my-8 text-gray-600">
+                {id === undefined ? 'Cadastrar tema':'Editar tema'}
             </h1>
 
-            <form className="w-1/2 flex flex-col gap-4" onSubmit={gerarNovoTema}>
-                <div className="flex flex-col gap-2">
-                    <label htmlFor="descricao">Descrição do Tema</label>
+            <form className="flex flex-col w-1/2 gap-4" onSubmit={gerarNovoTema}>
+                <div className="flex flex-col gap-1 text-gray-600">
+                    <label htmlFor="descricao">Tema</label>
                     <input
                         type="text"
-                        placeholder="Descreva aqui seu tema"
+                        placeholder=" Defina seu tema"
                         name='descricao'
-                        className="border-2 border-slate-700 rounded p-2"
+                        className="border p-1 border-yellow-600 rounded"
                         value={tema.descricao}
                         onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
                     />
                 </div>
 
                 <button
-                    className="rounded text-slate-100 bg-indigo-400 hover:bg-indigo-800 w-1/2 py-2 mx-auto flex justify-center" type="submit">
+                    className="rounded disabled:bg-gray-400 bg-yellow-600 cursor-pointer
+                        text-gray-100 w-1/2 mx-auto py-2 flex justify-center" type="submit">
                     {isLoading ?
                         <RotatingLines
                             strokeColor="white"

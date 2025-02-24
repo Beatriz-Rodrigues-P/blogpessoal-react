@@ -18,7 +18,7 @@ function Footer() {
                     flex 
                     justify-between
                     items-center 
-                    py-2
+                    py-3
                     px-4">
 
                     <p className='text-xl'>

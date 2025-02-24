@@ -4,7 +4,8 @@ import { useNavigate } from "react-router-dom";
 import Tema from "../../../models/Tema";
 import { AuthContext } from "../../../contexts/AuthContext";
 import { buscar } from "../../../services/Service";
-import { DNA } from "react-loader-spinner";
+import { ColorRing } from "react-loader-spinner";
+import { ToastAlert } from "../../../utils/ToastAlert";
 
 function ListaTemas() {
 
@@ -29,7 +30,7 @@ function ListaTemas() {
 
     useEffect(() => {
         if (token === '') {
-            alert('Você precisa estar logado!')
+            ToastAlert('Você precisa estar logado!', "info")
             navigate('/')
         }
     }, [token])
@@ -41,20 +42,26 @@ function ListaTemas() {
     return (
         <>
 
-            {temas.length===0 && (
-                <DNA
-                    visible={true}
-                    height="200"
-                    width="200"
-                    ariaLabel="dna-loading"
-                    wrapperStyle={{}}
-                    wrapperClass="dna-wrapper mx-auto"
-                />
+            {temas.length === 0 && (
+                <ColorRing
+                visible={true}
+                height="80"
+                width="80"
+                ariaLabel="color-ring-loading"
+                wrapperStyle={{
+                    display:"flex",
+                    justifyContent:"center",
+                    alignItems:"center",
+                    height:"100vh"
+                }}
+                wrapperClass="color-ring-wrapper mx-auto"
+                colors={['#e15b64', '#f47e60', '#f8b26a', '#abbd81', '#849b87']}
+            />
             )}
 
-            <div className="flex justify-center w-full my-4">
+            <div className="flex justify-center w-full bg-gray-50">
                 <div className="container flex flex-col">
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div className="container pt-30 pb-30 mx-auto grid lg:grid-cols-3 gap-4">
                         {temas.map((tema)=>(
                             <CardTemas key={tema.id} tema={tema}/>
                         ))}

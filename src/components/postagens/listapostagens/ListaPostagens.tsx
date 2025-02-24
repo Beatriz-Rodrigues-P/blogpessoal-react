@@ -5,6 +5,7 @@ import { AuthContext } from "../../../contexts/AuthContext";
 import Postagem from "../../../models/Postagem";
 import { buscar } from "../../../services/Service";
 import { ColorRing } from "react-loader-spinner";
+import { ToastAlert } from "../../../utils/ToastAlert";
 
 function ListaPostagens() {
 
@@ -32,7 +33,7 @@ function ListaPostagens() {
 
     useEffect(() => {
         if (token === '') {
-            alert('Você precisa estar logado')
+            ToastAlert('Você precisa estar logado', "info")
             navigate('/');
         }
     }, [token])
@@ -53,16 +54,16 @@ function ListaPostagens() {
                     display:"flex",
                     justifyContent:"center",
                     alignItems:"center",
-                    height:"100vh"
+                    height:"100vh",
+                    background: "gray-100"
                 }}
                 wrapperClass="color-ring-wrapper mx-auto"
                 colors={['#e15b64', '#f47e60', '#f8b26a', '#abbd81', '#849b87']}
             />
             )}
-            <div className="flex justify-center w-full my-4 bg-gray-50 pb-7 pt-3">
-                <div className="container flex flex-col mx-2">
-                    <div className='container mx-auto my-4 
-                        grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'
+            <div className="flex justify-center w-full bg-gray-50">
+                <div className="container flex flex-col">
+                    <div className='container pt-30 pb-30 mx-auto grid lg:grid-cols-3 gap-4'
                     >
                         {postagens.map((postagem) => (
                             <CardPostagens key={postagem.id} postagem={postagem} />

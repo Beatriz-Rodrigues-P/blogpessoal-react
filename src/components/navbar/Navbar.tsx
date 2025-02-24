@@ -1,6 +1,7 @@
 import { useContext, useState } from "react"
 import { Link, useLocation, useNavigate } from "react-router-dom"
 import { AuthContext } from "../../contexts/AuthContext"
+import { ToastAlert } from "../../utils/ToastAlert"
 
 function Navbar() {
 
@@ -12,7 +13,7 @@ function Navbar() {
 
     function logout(){
         handleLogout()
-        alert("Usuário desconectado")
+        ToastAlert("Usuário desconectado", "info")
         navigate("/")
     }
 
@@ -57,8 +58,8 @@ function Navbar() {
                                     {/* Edição do drop*/}
                                     {isDropdownOpen && (
                                 <div className="absolute right-0 mt-2 w-48 bg-gray-100 rounded-md shadow-lg z-10">
-                                    <Link to='/temas' className='block px-4 py-2 text-gray-500 hover:bg-gray-200'>Ver Temas</Link>
-                                    <Link to='/cadastrartema' className='block px-4 py-2 text-gray-500 hover:bg-gray-200'>Cadastrar Tema</Link>
+                                    <Link to='/temas' className='block px-4 py-2 text-gray-500 hover:bg-gray-200'>Temas</Link>
+                                    <Link to='/cadastrartema' className='block px-4 py-2 text-gray-500 hover:bg-gray-200'>Cadastrar tema</Link>
                                 </div>
                                 )}
                             </div>
